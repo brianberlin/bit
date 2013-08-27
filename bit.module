@@ -343,3 +343,20 @@ function bit_views_api() {
   );
 }
 
+/**
+  * Implements hook_coffee_commands()
+  */
+function bit_coffee_commands($op) {
+  $commands = array();
+
+  foreach (bit_types() as $key => $value) {
+    $commands[] = array(
+      'value' => 'bit/add/' . $key,
+      'label' => "Add " . $value->label,
+    );
+  }
+
+
+  return $commands;
+}
+
