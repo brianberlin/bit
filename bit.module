@@ -145,7 +145,7 @@ function bit_menu() {
   $items['admin/structure/bit-types/%bit_type/delete'] = array(
     'title' => 'Delete',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('bit_type_form_delete_confirm', 4),
+    'page arguments' => array('bit_type_form_delete_confirm', 3),
     'access arguments' => array('administer bit types'),
     'weight' => 1,
     'type' => MENU_NORMAL_ITEM,
@@ -355,6 +355,11 @@ function bit_coffee_commands($op) {
       'label' => "Add " . $value->label,
     );
   }
+
+  $commands[] = array(
+    'value' => 'bit/',
+    'label' => "Bit Content",
+  );
 
 
   return $commands;
