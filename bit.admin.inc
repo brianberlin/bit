@@ -140,12 +140,6 @@ function bit_form($form, &$form_state, $bit) {
     '#default_value' => $bit->title,
   );
 
-  $form['description'] = array(
-    '#type' => 'textarea',
-    '#title' => t('Description'),
-    '#default_value' => $bit->description,
-  );
-
   $form['uid'] = array(
     '#type' => 'value',
     '#value' => $bit->uid,

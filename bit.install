@@ -46,10 +46,6 @@ function bit_schema() {
         'not null' => TRUE,
         'default' => 0,
       ),
-      'description' => array(
-        'description' => 'bit description.',
-        'type' => 'text',
-      ),
     ),
     'primary key' => array('btid'),
   );
