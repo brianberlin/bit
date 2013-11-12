@@ -133,7 +133,7 @@ function bit_menu() {
 
   foreach (bit_types() as $type => $info) {
     $items['bit/add/' . $type] = array(
-      'title' => 'Add bit',
+      'title' => $info->label,
       'page callback' => 'bit_add',
       'page arguments' => array(2),
       'access callback' => 'entity_access',
