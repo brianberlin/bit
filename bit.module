@@ -183,10 +183,38 @@ function bit_permission() {
     'edit own bit entities' => array(
       'title' => t('Edit own bits'),
       'description' => t('Allows users to edit own bits.'),
-      'restrict access' => TRUE,
+      'restrict access' => FALSE,
     ),
   );
 
+  $types = bit_types();
+  foreach($types as $type){
+    $permissions["create $type->type bit entities"] = array(
+      'title' => t("Create $type->label bits"),
+      'description' => t("Allows users to create $type->label bits"),
+      'restrict access' => FALSE,
+    );
+    $permissions["view any $type->type bit entities"] = array(
+      'title' => t("View any $type->label bits"),
+      'description' => t("Allows users to view any $type->label bits"),
+      'restrict access' => FALSE,
+    );
+    $permissions["view own $type->type bit entities"] = array(
+      'title' => t("View own $type->label bits"),
+      'description' => t("Allows users to view own $type->label bits"),
+      'restrict access' => FALSE,
+    );
+    $permissions["edit any $type->type bit entities"] = array(
+      'title' => t("Edit any $type->label bits"),
+      'description' => t("Allows users to view any $type->label bits"),
+      'restrict access' => FALSE,
+    );
+    $permissions["edit own $type->type bit entities"] = array(
+      'title' => t("Edit own $type->label bits"),
+      'description' => t("Allows users to view own $type->label bits"),
+      'restrict access' => FALSE,
+    );
+  }
   return $permissions;
 }
 
@@ -235,18 +263,27 @@ function bit_access($op, $bit, $account = NULL, $entity_type = NULL) {
   if (!isset($account)) {
     $account = $user;
   }
+  
   switch ($op) {
-    case 'create':
-      return user_access('administer bit entities', $account)
-          || user_access('create bit entities', $account);
-    case 'view':
-      return user_access('administer bit entities', $account)
-          || user_access('view bit entities', $account);
-    case 'edit':
-      return user_access('administer bit entities')
-          || user_access('edit any bit entities')
-          || (user_access('edit own bit entities') && ($bit->uid == $account->uid));
+    case "create":
+      return user_access("administer bit entities", $account)
+          || user_access("create bit entities", $account)
+          || user_access("create $bit bit entities", $account);
+    case "view":
+      return user_access("administer bit entities", $account)
+          || user_access("view bit entities", $account)
+          || user_access("view $bit bit entities", $account);
+    case "edit":
+      return user_access("administer bit entities")
+          || user_access("edit any bit entities")
+          || user_access("edit any $bit bit entities")
+          || (user_access("edit own bit entities") && ($bit->uid == $account->uid))
+          || (user_access("edit own $bit bit entities") && ($bit->uid == $account->uid));
   }
+}
+
+function bit_user_access($type,$account){
+
 }
 
 /**
