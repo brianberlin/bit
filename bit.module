@@ -83,7 +83,7 @@ function bit_menu() {
   $items['bit/add'] = array(
     'title' => 'Add bit',
     'page callback' => 'bit_admin_add_page',
-    'access arguments' => array('administer bit entities'),
+    'access arguments' => array('create bit entities'),
     'file' => 'bit.admin.inc',
     'type' => MENU_LOCAL_ACTION,
     'tab_parent' => 'bit',
