@@ -23,6 +23,13 @@ function bit_views_default_views(){
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '50';
   $handler->display->display_options['style_plugin'] = 'table';
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['content'] = '<ul class="action-links"><li><a href="/bit/add">Add bit</a></li>
+  </ul>';
+  $handler->display->display_options['header']['area']['format'] = 'full_html';
   /* Field: Bit: Bit ID */
   $handler->display->display_options['fields']['btid']['id'] = 'btid';
   $handler->display->display_options['fields']['btid']['table'] = 'bit';
